@@ -12,7 +12,5 @@ export default async function Characters({ searchParams }: Props): Promise<JSX.E
   const page = Number(searchParams.page) || 1;
   const search = searchParams.search || '';
   const data = await getCharacters(page, search);
-  return (
-    <List characters={data.results} />
-  );
+  return <List characters={data.results} />;
 }
