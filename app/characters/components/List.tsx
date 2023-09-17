@@ -1,35 +1,79 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { ListItem } from '@/app/characters/components/ListItem';
-import { Character } from '@/types';
+import { Pagination } from '@/components/Pagination';
+import { Skeleton } from '@/components/Skeleton';
+import { getCharacters } from '@/services/characters';
+import { Character, ListResponse } from '@/types';
 import { formatDate } from '@/utils/formatDate';
+import { shallowNavigate } from '@/utils/shallowNavigate';
 
 interface Props {
-  characters: Character[];
+  searchParams: {
+    search?: string;
+    page?: string;
+  };
 }
 
-export async function List({ characters }: Props): Promise<JSX.Element> {
+export function List({ searchParams }: Props): JSX.Element {
+  const [search] = useState(searchParams.search || '');
+  const [page, setPage] = useState(Number(searchParams.page) || 1);
+  const queryKey = ['characters', { page, search }];
+  const { data, isFetching } = useQuery<ListResponse<Character>>({
+    queryKey,
+    queryFn: () => getCharacters(page, search),
+    keepPreviousData: true,
+  });
   return (
     <>
       <div className="hidden md:block sticky top-0 border-b">
         <ListItem name="Name" birthYear="Birth Year" height="Height" created="Created" isHeader />
       </div>
-      <ul className="mb-4">
-        {(characters || []).map((character) => (
-          <li key={character.url}>
-            <Link href={`/characters/${character.url.split('/').at(-2)}`}>
+      {!data?.count && !isFetching && <p className="text-center">No results found</p>}
+      {isFetching ? (
+        <ul className="mb-4">
+          {Array.from(Array(10).keys()).map((i) => (
+            <li key={i}>
               <ListItem
-                name={character.name}
-                birthYear={character.birth_year}
-                height={character.height}
-                created={formatDate(character.created)}
+                name={<Skeleton className="my-1" variant={Skeleton.variant.TEXT} />}
+                birthYear={<Skeleton className="my-1 w-1/3" variant={Skeleton.variant.TEXT} />}
+                height={<Skeleton className="my-1 w-1/3" variant={Skeleton.variant.TEXT} />}
+                created={<Skeleton className="my-1" variant={Skeleton.variant.TEXT} />}
               />
-            </Link>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <ul className="mb-4">
+          {(data?.results || []).map((character) => (
+            <li key={character.url}>
+              <Link href={`/characters/${character.url.split('/').at(-2)}`}>
+                <ListItem
+                  name={character.name}
+                  birthYear={character.birth_year}
+                  height={character.height}
+                  created={formatDate(character.created)}
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+      {!!data?.count && (
+        <Pagination
+          isDisabled={isFetching}
+          onChange={(p): void => {
+            setPage(p);
+            shallowNavigate(window.location.pathname, { search, page: p });
+          }}
+          page={Number(page)}
+          hasNextPage={!!data?.next}
+        />
+      )}
     </>
   );
 }

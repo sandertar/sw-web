@@ -2,6 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto_Mono } from 'next/font/google';
 
+import Providers from './providers';
+
 import { Header } from '@/components/Header';
 
 const roboto = Roboto_Mono({ subsets: ['latin'] });
@@ -16,7 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
     <html lang="en">
       <body className={roboto.className}>
         <Header />
-        <main className="app-layout">{children}</main>
+        <Providers>
+          <main className="app-layout">{children}</main>
+        </Providers>
       </body>
     </html>
   );
