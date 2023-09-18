@@ -52,7 +52,7 @@ export function Button(props: Props): JSX.Element {
 
   const roundedClasses = rounded ? '!rounded-full' : '';
 
-  const disabledClasses = disabled ? 'opacity-30' : '';
+  const disabledClasses = disabled ? 'opacity-30 pointer-events-none' : '';
 
   const finalButtonClasses = `${buttonLayoutClasses} ${className} ${VARIANT_MAPS[variant]} ${SIZE_MAPS[uiSize]} ${roundedClasses} ${disabledClasses}`;
 
