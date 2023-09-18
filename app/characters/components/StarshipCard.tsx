@@ -1,6 +1,6 @@
 import { RiSpaceShipFill, RiTeamLine } from 'react-icons/ri';
 
-import { Card } from '@/components/Card';
+import { Card, Typography } from '@/components';
 import { Starship } from '@/types';
 
 interface Props {
@@ -10,12 +10,14 @@ interface Props {
 export function StarshipCard({ starship }: Props): JSX.Element {
   return (
     <Card>
-      <p
-        className="font-bold text-lg mb-2 whitespace-nowrap overflow-hidden text-ellipsis text-blue-500"
+      <Typography
+        variant="h3"
+        highlighted
+        className="font-bold mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
         title={starship.name}
       >
         {starship.name}
-      </p>
+      </Typography>
       <p className="flex items-center space-x-4 whitespace-nowrap">
         <RiSpaceShipFill className="shrink-0" />{' '}
         <span className="min-w-0 overflow-hidden text-ellipsis" title={starship.model}>

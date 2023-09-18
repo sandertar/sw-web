@@ -1,6 +1,6 @@
 import { dehydrate, Hydrate } from '@tanstack/react-query';
 
-import { List } from '@/app/characters/components/List';
+import { List } from '@/app/characters/components';
 import { getQueryClient } from '@/app/getQueryClient';
 import { getCharacters } from '@/services/characters';
 

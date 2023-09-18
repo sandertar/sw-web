@@ -3,7 +3,7 @@
 import { SyntheticEvent, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components';
 
 interface Props {
   search?: string;

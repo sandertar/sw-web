@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import { Typography } from '@/components';
+
 interface Props {
   name: ReactNode;
   birthYear: ReactNode;
@@ -11,18 +13,22 @@ interface Props {
 export function ListItem({ name, birthYear, height, created, isHeader }: Props): JSX.Element {
   return (
     <div className={`md:flex py-1 ${!isHeader ? 'hover:bg-blue-500/30 transition-all' : 'text-blue-500'}`}>
-      <div className="md:w-1/4 px-4 font-bold">{name}</div>
       <div className="md:w-1/4 px-4">
-        <span className="md:hidden">Birth Year: </span>
-        <span>{birthYear}</span>
+        <Typography highlighted={isHeader} block className="font-bold md:font-normal">
+          {name}
+        </Typography>
       </div>
-      <div className="md:w-1/4 px-4">
-        <span className="md:hidden">Height: </span>
-        {height}
+      <div className="md:w-1/4 px-4 md:text-right">
+        <Typography className="md:hidden">Birth Year: </Typography>
+        <Typography highlighted={isHeader}>{birthYear}</Typography>
       </div>
-      <div className="md:w-1/4 px-4">
-        <span className="md:hidden">Created: </span>
-        <span>{created}</span>
+      <div className="md:w-1/4 px-4 md:text-right">
+        <Typography className="md:hidden">Height: </Typography>
+        <Typography highlighted={isHeader}>{height}</Typography>
+      </div>
+      <div className="md:w-1/4 px-4 md:text-right">
+        <Typography className="md:hidden">Created: </Typography>
+        <Typography highlighted={isHeader}>{created}</Typography>
       </div>
     </div>
   );

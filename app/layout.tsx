@@ -1,12 +1,12 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Roboto_Mono } from 'next/font/google';
+import { Tektur } from 'next/font/google';
 
 import Providers from './providers';
 
-import { Header } from '@/components/Header';
+import { Header } from '@/components';
 
-const roboto = Roboto_Mono({ subsets: ['latin'] });
+const tektur = Tektur({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={tektur.className}>
         <Header />
         <Providers>
           <main className="app-layout">{children}</main>

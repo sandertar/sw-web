@@ -6,12 +6,10 @@ import { useState } from 'react';
 
 import { ListItem } from '@/app/characters/components/ListItem';
 import { SearchBar } from '@/app/characters/components/SearchBar';
-import { Pagination } from '@/components/Pagination';
-import { Skeleton } from '@/components/Skeleton';
+import { Pagination, Skeleton } from '@/components';
 import { getCharacters } from '@/services/characters';
 import { Character, ListResponse } from '@/types';
-import { formatDate } from '@/utils/formatDate';
-import { shallowNavigate } from '@/utils/shallowNavigate';
+import { formatDate, shallowNavigate } from '@/utils';
 
 interface Props {
   searchParams: {
@@ -41,7 +39,7 @@ export function List({ searchParams }: Props): JSX.Element {
           search={search}
         />
       </div>
-      <div className="hidden md:block sticky top-0 border-b">
+      <div className="hidden md:block sticky top-0 border-b border-blue-500">
         <ListItem name="Name" birthYear="Birth Year" height="Height" created="Created" isHeader />
       </div>
       {!data?.count && !isFetching && <p className="text-center">No results found</p>}
