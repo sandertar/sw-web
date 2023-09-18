@@ -1,4 +1,4 @@
-import { StarshipCard } from '@/app/characters/components';
+import { StarshipCard, BackButton } from '@/app/characters/components';
 import CONFIG from '@/appconfig';
 import { Card, Typography } from '@/components';
 import { Character, Planet, Species, Starship } from '@/types';
@@ -17,40 +17,44 @@ export default async function CharacterPage({ params: { id } }: Props): Promise<
     character.starships.map((starship) => fetch(starship).then((res) => res.json())),
   );
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="md:col-span-2">
-        <Card>
-          <Typography block variant="h2" highlighted className="italic mb-4 font-bold">
-            {character.name}
-          </Typography>
-          <Typography block>Classification: {species.classification}</Typography>
-          <Typography block>Language: {species.language}</Typography>
-          <Typography block>Average Lifespan: {species.average_lifespan} years</Typography>
-          <Typography block variant="h2" highlighted className="mb-4 mt-6 font-bold">
-            Physical Characteristics:
-          </Typography>
-          <Typography block>Height: {character.height} centimeters</Typography>
-          <Typography block>Mass: {character.mass} kilograms</Typography>
-          <Typography block>Hair Color: {character.hair_color}</Typography>
-          <Typography block>Skin Color: {character.skin_color}</Typography>
-          <Typography block>Eye Color: {character.eye_color}</Typography>
-          <Typography block variant="h2" highlighted className="mb-4 mt-6 font-bold">
-            Biographical Information:
-          </Typography>
-          <Typography block>Birth Year: {character.birth_year}</Typography>
-          <Typography block>Home world: {homeWorld.name}</Typography>
-          <Typography block>Gender: {character.gender}</Typography>
-        </Card>
-      </div>
-      <div>
-        {/* <h2 className="text-xl font-bold mb-4">Star ships:</h2> */}
-        <div className="grid grid-cols-1 gap-4">
-          {starShips.map((starship) => (
-            <div key={starship.name}>
-              <StarshipCard key={starship.name} starship={starship} />
-            </div>
-          ))}
+    <div>
+      <BackButton className="mb-4" />
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <Card>
+            <Typography block variant="h2" highlighted className="italic mb-4 font-bold">
+              {character.name}
+            </Typography>
+            <Typography block>Classification: {species.classification}</Typography>
+            <Typography block>Language: {species.language}</Typography>
+            <Typography block>Average Lifespan: {species.average_lifespan} years</Typography>
+            <Typography block variant="h2" highlighted className="mb-4 mt-6 font-bold">
+              Physical Characteristics:
+            </Typography>
+            <Typography block>Height: {character.height} centimeters</Typography>
+            <Typography block>Mass: {character.mass} kilograms</Typography>
+            <Typography block>Hair Color: {character.hair_color}</Typography>
+            <Typography block>Skin Color: {character.skin_color}</Typography>
+            <Typography block>Eye Color: {character.eye_color}</Typography>
+            <Typography block variant="h2" highlighted className="mb-4 mt-6 font-bold">
+              Biographical Information:
+            </Typography>
+            <Typography block>Birth Year: {character.birth_year}</Typography>
+            <Typography block>Home world: {homeWorld.name}</Typography>
+            <Typography block>Gender: {character.gender}</Typography>
+          </Card>
         </div>
+        {starShips.length > 0 && (
+          <div className="w-1/3">
+            <div className="grid grid-cols-1 gap-4">
+              {starShips.map((starship) => (
+                <div key={starship.name}>
+                  <StarshipCard key={starship.name} starship={starship} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
