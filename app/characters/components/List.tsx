@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { ListItem } from '@/app/characters/components/ListItem';
+import { SearchBar } from '@/app/characters/components/SearchBar';
 import { Pagination } from '@/components/Pagination';
 import { Skeleton } from '@/components/Skeleton';
 import { getCharacters } from '@/services/characters';
@@ -20,7 +21,7 @@ interface Props {
 }
 
 export function List({ searchParams }: Props): JSX.Element {
-  const [search] = useState(searchParams.search || '');
+  const [search, setSearch] = useState(searchParams.search || '');
   const [page, setPage] = useState(Number(searchParams.page) || 1);
   const queryKey = ['characters', { page, search }];
   const { data, isFetching } = useQuery<ListResponse<Character>>({
@@ -30,6 +31,16 @@ export function List({ searchParams }: Props): JSX.Element {
   });
   return (
     <>
+      <div className="mb-8">
+        <SearchBar
+          onChange={(s): void => {
+            setPage(1);
+            setSearch(s);
+            shallowNavigate(window.location.pathname, { search: s });
+          }}
+          search={search}
+        />
+      </div>
       <div className="hidden md:block sticky top-0 border-b">
         <ListItem name="Name" birthYear="Birth Year" height="Height" created="Created" isHeader />
       </div>
