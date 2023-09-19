@@ -8,6 +8,7 @@ enum TypographyVariant {
   H5 = 'h5',
   H6 = 'h6',
   BODY1 = 'body1',
+  BODYSM = 'bodySm',
 }
 
 const CLASS_MAP: Record<TypographyVariant, string> = {
@@ -18,6 +19,7 @@ const CLASS_MAP: Record<TypographyVariant, string> = {
   [TypographyVariant.H5]: 'text-md',
   [TypographyVariant.H6]: 'text-md',
   [TypographyVariant.BODY1]: 'text-md',
+  [TypographyVariant.BODYSM]: 'text-sm',
 };
 
 const VARIANT_MAP: Record<TypographyVariant, keyof JSX.IntrinsicElements> = {
@@ -28,6 +30,7 @@ const VARIANT_MAP: Record<TypographyVariant, keyof JSX.IntrinsicElements> = {
   [TypographyVariant.H5]: 'h5',
   [TypographyVariant.H6]: 'h6',
   [TypographyVariant.BODY1]: 'span',
+  [TypographyVariant.BODYSM]: 'span',
 };
 
 interface Props {

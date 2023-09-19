@@ -18,9 +18,9 @@ export default async function CharacterPage({ params: { id } }: Props): Promise<
   );
   return (
     <div>
-      <BackButton className="mb-4" />
-      <div className="flex gap-4">
-        <div className="flex-1">
+      <div className="md:flex md:space-x-4">
+        <div className="flex-1 mb-4">
+          <BackButton className="mb-4" />
           <Card>
             <Typography block variant="h2" highlighted className="italic mb-4 font-bold">
               {character.name}
@@ -45,7 +45,10 @@ export default async function CharacterPage({ params: { id } }: Props): Promise<
           </Card>
         </div>
         {starShips.length > 0 && (
-          <div className="w-1/3">
+          <div className="md:w-1/3">
+            <Typography block className="mb-4 font-bold">
+              Spaceships:
+            </Typography>
             <div className="grid grid-cols-1 gap-4">
               {starShips.map((starship) => (
                 <div key={starship.name}>
