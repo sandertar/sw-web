@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: install NPM dependencies
-      uses: pnpm i
+      run: pnpm i
 
     - name: Generate LCOV
-      uses: pnpm test
+      run: pnpm test
 
     - name: Report code coverage
       uses: zgosalvez/github-actions-report-lcov@v3
