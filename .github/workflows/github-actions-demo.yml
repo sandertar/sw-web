@@ -22,3 +22,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         file: ./coverage/apps/portal-spa/lcov.info
+        compare-ref: main
