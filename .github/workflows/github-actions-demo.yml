@@ -7,6 +7,10 @@ jobs:
     name: Generate coverage report
     runs-on: ubuntu-latest
     steps:
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 6.0.2
+
     - name: install NPM dependencies
       run: pnpm i
 
