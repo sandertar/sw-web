@@ -23,7 +23,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const issueNumber = context.issue.number;
-            const content = `$(cat coverage/coverage.txt)`;
+            const content = "test";
             const body = `
             Coverage report:
             \`\`\`
