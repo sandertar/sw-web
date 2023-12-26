@@ -18,11 +18,6 @@ jobs:
       run: pnpm test
 
     - name: Report code coverage
-      uses: zgosalvez/github-actions-report-lcov@v3
+      uses: romeovs/lcov-reporter-action@v0.2.16
       with:
-        coverage-files: coverage/lcov.*.info
-        minimum-coverage: 90
-        artifact-name: code-coverage-report
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: apps/my-first-app
-        update-comment: true
+        lcov-file: ./coverage/lcov.info
