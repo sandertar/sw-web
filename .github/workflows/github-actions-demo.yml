@@ -18,24 +18,24 @@ jobs:
       run: pnpm test
 
     - name: LCOV comment
-    - uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const issueNumber = context.issue.number;
-            const content = "test";
-            const body = `
-            Coverage report:
-            \`\`\`
-            ${content}
-            \`\`\`
-            `;
-            github.rest.issues.createComment({
-              issue_number: issueNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: body
-            });
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const issueNumber = context.issue.number;
+          const content = "test";
+          const body = `
+          Coverage report:
+          \`\`\`
+          ${content}
+          \`\`\`
+          `;
+          github.rest.issues.createComment({
+            issue_number: issueNumber,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          });
 
     - name: Report code coverage
       uses: coverallsapp/github-action@master
