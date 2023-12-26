@@ -17,12 +17,6 @@ jobs:
     - name: Generate LCOV
       run: pnpm test
 
-    - name: Read Report File
-        id: file-content
-        run: |
-          content=$(cat coverage/coverage.txt)
-          echo "::set-output name=content::$content"
-
     - name: LCOV comment
     - uses: actions/github-script@v3
         with:
