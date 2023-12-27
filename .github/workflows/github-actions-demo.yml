@@ -42,5 +42,5 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./coverage/apps/portal-spa/lcov.info
+        file: ./coverage/lcov.info
         compare-ref: main
