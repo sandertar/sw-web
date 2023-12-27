@@ -35,9 +35,7 @@ jobs:
             `
           })
 
-    - name: Report code coverage
-      uses: coverallsapp/github-action@master
+    - uses: VeryGoodOpenSource/very_good_coverage@v2
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./coverage/lcov.info
-        compare-ref: main
+        path: '/coverage/lcov.info'
+        min_coverage: 50
