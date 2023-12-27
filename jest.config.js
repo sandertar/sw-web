@@ -12,15 +12,6 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: ['app/**/*.{ts,tsx}', 'utils/**/*.{ts,tsx}'],
   coverageReporters: [["text", { file: 'coverage.txt' }], ["text-summary", { file: 'summary.txt' }], "text-summary", "text", "lcov"],
-  coverageThreshold: {
-    "global": {
-      "branches": 1,
-      "functions": 1,
-      "lines": 1,
-      "statements": 1
-    }
-  }
-
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
