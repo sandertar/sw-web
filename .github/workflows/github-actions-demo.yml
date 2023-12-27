@@ -19,7 +19,7 @@ jobs:
 
     - name: Read LCOV file
       id: getlcov
-      run: echo "report=$(cat ./coverage/lcov.info)" >> $GITHUB_OUTPUT
+      run: echo "report=$(cat ./coverage/coverage.txt)" >> $GITHUB_OUTPUT
 
     - name: LCOV comment
       uses: actions/github-script@v7
