@@ -31,7 +31,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `${ summaryContent.slice(1) }
+            body: `${ summaryContent.split('\n').slice(1) }
             
             ${ coverageContent.split('\n').slice(1, -2).map((line) => "|" + line + "|").join("\n") }`
           })
