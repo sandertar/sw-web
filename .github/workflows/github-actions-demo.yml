@@ -33,5 +33,5 @@ jobs:
             repo: context.repo.repo,
             body: `${ summaryContent }
             
-            ${ coverageContent.split('\n').map((line) => "|" + line + "|").join() }`
+            ${ coverageContent.split('\n').map((line) => "|" + line + "|\n'").join() }`
           })
