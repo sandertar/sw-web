@@ -23,7 +23,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
           const fs = require('fs');
-          const lcovContent = fs.readFileSync('./coverage/coverage.txt, 'utf8');
+          const lcovContent = fs.readFileSync('./coverage/coverage.txt', 'utf8');
           const issueNumber = context.issue.number;
   
           await github.rest.issues.createComment({
