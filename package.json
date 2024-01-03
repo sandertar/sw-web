@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --ci --coverage",
+    "test": "jest --ci --coverage && node ./coverageMerger.js",
     "lint": "next lint"
   },
   "dependencies": {
