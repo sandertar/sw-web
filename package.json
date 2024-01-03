@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --ci",
+    "test": "jest --ci --coverage && node ./coverageMerger.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -17,7 +17,7 @@
     "autoprefixer": "10.4.15",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
-    "next": "13.4.19",
+    "next": "13.4.20-canary.16",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
